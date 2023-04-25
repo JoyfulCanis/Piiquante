@@ -1,6 +1,12 @@
-//Import des modules Express et Mongoose
+//Import des modules
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
+//Import des routes
+const sauceRoutes = require("./routes/sauce");
+const userRoutes = require("./routes/user");
+
+const app = express();
 
 //---------[DEBUT]-------Utilisation unique, à supprimer ensuite-----[DEBUT]-------------
 const crypto = require("crypto");
@@ -10,9 +16,9 @@ require("dotenv").config();
 console.log("TS IS", SECRET_KEY);
 //----------[FIN]------Utilisation unique, à supprimer ensuite-------[FIN]-----------
 
-const app = express();
 
-//Connect to Mongoose
+
+//Connection à MongoDB (Possibilité de mettre les identifiants dans un .env)
 mongoose
   .connect(
     "mongodb+srv://johndoe:admin@piiquante.aeuww2a.mongodb.net/?retryWrites=true&w=majority",
@@ -37,19 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use(cors())
+app.use("/api/sauce", sauceRoutes);
+app.use('/api/auth', userRoutes);
 module.exports = app;
