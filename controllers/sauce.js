@@ -5,12 +5,9 @@ const fs = require("fs");
 //----Create----Sauce----
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
-    delete sauceObject._id;
-    delete sauceObject._userId;
     const sauce = new Sauce({
       ...sauceObject,
-      userId: req.auth.userId,
-      imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+      imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
     });
   
     sauce
@@ -136,8 +133,10 @@ exports.likeSauce = (req, res, next) => {
           }
         }
         //Mise à jour des valeurs
-        sauce.likes = sauce.usersLiked.length;
-        sauce.dislikes = sauce.usersDisliked.length;
+        const totalLikes = sauce.usersLiked.length;
+        const totalDislikes = sauce.usersDisliked.length;
+        sauce.likes = totalLikes - 1;
+        sauce.dislikes = totalDislikes - 1;
 
         sauce
           .save()
