@@ -12,8 +12,14 @@ L'API est sécurisée et utilise un middleware pour vérifier l'authentification
 Pour utiliser cette application, vous aurez besoin de Node.js d'installé sur votre machine.
 
 Un fichier .env est fourni dans la version de test, il ne sera pas présent sur le repo github.
-Ce fichier (.env) n'est pas nécessaire, sauf si on ne passe pas par MongoDB pour la clé secrète, dans ce cas il faudra le créer et adapter le code
-(voir les commentaires sur "controllers/user.js", "middleware/auth.js").
+
+[Si vous passez par le repo git, vous devrez adapter l'adresse srv sur /app.js.
+Vous devrez aussi créer une collection conforme au chemin mentionné sur le code concernant la secret_key via MongoDB.
+Si vous ne souhaitez pas passer par MongoDB concernent la secret_key, passez par une variable d'environnement,
+le code est déjà écrit mais inactif (voir les commentaires sur "controllers/user.js", "middleware/auth.js").
+Le cas échéant, pensez à bien commenter la partie du code inutilisée.]
+
+Le dossier frontend est délivré sur demande.
 
 Installez les dépendances : npm install
 Démarrez le frontend: npm start run
@@ -61,4 +67,6 @@ GET /api/sauces/:id : Récupération d'une sauce par son identifiant
 POST /api/sauces/:id/like : Ajout d'un like ou d'un dislike à une sauce
 
 Auteur
-Aloulou Neil aka JoyfulCanis on github.
+Aloulou Neil aka JoyfulCanis on github
+
+Merci de votre intérêt pour mon travail.
